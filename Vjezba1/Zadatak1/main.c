@@ -1,20 +1,28 @@
 #include <stdio.h>
 
+
 void PrintResult(int res)
 {
     printf("Result: %d\n", res);
 }
 
-int main()
+
+int Calculation(int a, int b)
+
 {
-    int a = 3;
-    int b = 8;
-    int c;
-	
     if(a > b)
-        c = a - b;
+        return a - b;
     else
-        c = b - a;
+        return b - a;
+}
+
+int main()
+{   
+    int a = 5;
+    int b = 4;
+    int c;
+    
+    c = Calculation(a,b);
 
     PrintResult(c);
 
