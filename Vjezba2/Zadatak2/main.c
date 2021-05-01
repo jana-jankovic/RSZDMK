@@ -1,16 +1,23 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-unsigned long millis=0;
-unsigned char fi=50;
+unsigned long millis=0, t0=0;
+unsigned char fi=0;
 
 ISR(TIMER0_COMPA_vect)
 {
 	millis++;
+	t0++;
+
+	if(t0 % 781 == 0) fi++;
+	if(t0  == 200000) {
+		t0=0;
+		fi=0;
+	}
 
 	if(millis == 256) millis=0;
 
-	if(millis < 250)
+	if(millis < fi)
 		PORTB |= 1 << 5;
 	else
 	{
